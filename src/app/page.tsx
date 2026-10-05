@@ -24,7 +24,7 @@ interface ProductGridProps {
 function ProductGrid({ items, onAddToCart, onQuickView, onReset }: ProductGridProps) {
   if (items.length === 0) {
     return (
-      <div className="border border-dashed border-neutral-800 px-6 py-20 text-center">
+      <div className="flex flex-col items-center justify-center border border-dashed border-neutral-800 py-16 text-center">
         <p className="text-lg font-bold">Produk tidak ditemukan</p>
         <p className="mt-2 text-sm text-neutral-400">
           Coba kata kunci lain atau tampilkan semua kategori.
@@ -41,7 +41,7 @@ function ProductGrid({ items, onAddToCart, onQuickView, onReset }: ProductGridPr
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 sm:gap-3 md:grid-cols-3 lg:grid-cols-3">
       {items.map((product) => (
         <ProductCard
           key={product.id}
@@ -102,7 +102,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur">
+      <header className="px-4 sm:px-8 sticky top-0 z-30 border-b border-neutral-800 bg-neutral-950/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
           <a href="/" className="text-xl font-black tracking-[0.3em]">
             KRONIK

@@ -81,9 +81,9 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
   };
 
   return (
-    <article className="group flex flex-col border border-neutral-800 bg-neutral-900/40 transition-colors hover:border-neutral-600">
+    <article className="group relative flex flex-col h-full border border-neutral-800 bg-neutral-900/40 transition-colors hover:border-neutral-600">
       {/* Gambar + badge + tombol quick view */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900">
+      <div className="relative aspect-4/5 overflow-hidden bg-neutral-900">
         <Link href={`/product/${product.id}`} aria-label={`Lihat detail ${product.name}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -110,22 +110,22 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
       </div>
 
       {/* Informasi produk */}
-      <div className="flex flex-1 flex-col p-4">
+      <div className="flex flex-1 flex-col justify-between p-3 sm:p-4">
         <p className="text-xs text-neutral-500">{CATEGORY_LABELS[product.category]}</p>
 
         <Link
           href={`/product/${product.id}`}
-          className="mt-1 text-base font-bold leading-snug text-neutral-100 hover:underline"
+          className="mt-1 truncate text-xs font-bold leading-snug text-neutral-100 sm:text-sm"
         >
           {product.name}
         </Link>
 
-        <div className="mt-2 flex items-baseline gap-2">
-          <span className={`text-base font-semibold ${sale ? 'text-red-500' : 'text-neutral-100'}`}>
+        <div className="mt-1 flex items-baseline gap-1.5 font-mono min-w-0 overflow-hidden">
+          <span className={`shrink-0 text-xs sm:text-sm font-semibold ${sale ? 'text-red-500' : 'text-neutral-100'}`}>
             {formatCurrency(product.price)}
           </span>
           {sale && product.originalPrice !== undefined && (
-            <span className="text-xs text-neutral-500 line-through">
+            <span className="truncate text-[10px] text-neutral-500 line-through sm:text-xs">
               {formatCurrency(product.originalPrice)}
             </span>
           )}
@@ -137,7 +137,7 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
         </p>
 
         {/* Pilihan ukuran */}
-        <div className="mt-4 flex gap-2" role="radiogroup" aria-label={`Ukuran ${product.name}`}>
+        <div className="mt-auto grid grid-cols-4 gap-1" role="radiogroup" aria-label={`Ukuran ${product.name}`}>
           {product.sizes.map((size) => {
             const active = selectedSize === size;
             return (

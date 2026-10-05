@@ -64,7 +64,7 @@ export function CartDrawer({
         role="dialog"
         aria-modal="true"
         aria-label="Keranjang belanja"
-        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-neutral-800 bg-neutral-950 text-neutral-100 shadow-2xl transition-transform duration-300 ease-out ${
+        className={`absolute right-0 top-0 flex w-full max-w-md flex-col border-l border-neutral-800 bg-neutral-950 text-neutral-100 shadow-2xl transition-transform duration-300 ease-out h-dvh ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -171,7 +171,7 @@ export function CartDrawer({
             </ul>
 
             {/* Footer: subtotal + checkout */}
-            <footer className="border-t border-neutral-800 px-6 py-5">
+            <footer className="border-t border-neutral-800 px-6 pt-5 pb-8 sm:pb-5">
               <div className="flex items-baseline justify-between">
                 <span className="text-sm text-neutral-400">Subtotal</span>
                 <span className="text-xl font-bold">{formatRupiah(subtotal)}</span>
