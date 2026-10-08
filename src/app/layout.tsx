@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { CartProvider } from '@/context/cartcontext';
+import { CartDrawerGlobal } from '@/components/CartDrawerGlobal';
 import { Geist, Geist_Mono } from "next/font/google";
 import { Viewport } from "next";
 import "./globals.css";
@@ -18,19 +20,21 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 export const metadata: Metadata = {
   title: "Kronik.Streetwear",
   description: 'Koleksi streetwear dengan bahan tebal, potongan longgar, dan produksi terbatas'
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="id">
+      <body>
+        <CartProvider>
+          {children}
+          <CartDrawerGlobal />
+        </CartProvider>
+      </body>
     </html>
   );
 }
+
