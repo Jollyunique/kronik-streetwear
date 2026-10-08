@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import type { Product, Size } from '@/types/product';
 import { CATEGORY_LABELS } from '@/data/products';
-import { useCart } from '@/hooks/useCart'; 
+
 
 const formatCurrency = (amount: number) => {
   return `Rp ${amount.toLocaleString('id-ID')}`;
@@ -50,9 +50,8 @@ interface ProductCardProps {
   onQuickView: (product: Product) => void;
 }
 
-export function ProductCard({ product, onQuickView }: ProductCardProps) {
+export function ProductCard({ product,onAddToCart, onQuickView }: ProductCardProps) {
   const [selectedSize, setSelectedSize] = useState<Size | null>(null);
-  const {addToCart, openCart} = useCart();
   const outOfStock = product.stock === 0;
   const sale = product.originalPrice !== undefined && product.originalPrice > product.price;
   const avaliableSize: Size[] = (product as unknown as{ sizes?: Size[]}).sizes || ['S','M','L','XL'];
@@ -67,8 +66,7 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
 
     if (!selectedSize || outOfStock) return;
 
-    addToCart(product, selectedSize);
-    openCart();
+    onAddToCart(product, selectedSize);
     setSelectedSize(null);
   }
 
